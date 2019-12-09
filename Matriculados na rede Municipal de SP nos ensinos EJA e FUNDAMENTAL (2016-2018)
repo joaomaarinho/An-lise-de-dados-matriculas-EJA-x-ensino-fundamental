@@ -26,7 +26,7 @@ df_2018 =pd.read_csv(r'Microdados_EOL_Matriculas_2018.csv', delimiter='|', encod
 #variaveis para o grafico
 anos = ['2016', '2017', '2018']
 dados_por_ano_eja = []
-dados_por_ano_medio = []
+dados_por_ano_fundamental = []
 
 
 #ln[4]:
@@ -48,15 +48,15 @@ eja_2016, eja_2017, eja_2018
 
 
 #consulta de matriculados ensino médio
-medio_2016 = df_2016.query('MODALIDADE == "MEDIO"')['MODALIDADE'].count()
-medio_2017 = df_2017.query('MODALIDADE == "MEDIO"')['MODALIDADE'].count()
-medio_2018 = df_2018.query('MODALIDADE == "MEDIO"')['MODALIDADE'].count()
+fundamental_2016 = df_2016.query('MODALIDADE == "FUND"')['MODALIDADE'].count()
+fundamental_2017 = df_2017.query('MODALIDADE == "FUND"')['MODALIDADE'].count()
+fundamental_2018 = df_2018.query('MODALIDADE == "FUND"')['MODALIDADE'].count()
 
 
 #ln[7]:
 
 
-medio_2016, medio_2017, medio_2018
+fundamental_2016, fundamental_2017, fundamental_2018
 
 
 #ln[8]:
@@ -78,15 +78,15 @@ dados_por_ano_eja
 
 
 #adicionando as consultas na lista dados_por_ano_medio
-dados_por_ano_medio.append(medio_2016)
-dados_por_ano_medio.append(medio_2017)
-dados_por_ano_medio.append(medio_2018)
+dados_por_ano_fundamental.append(fundamental_2016)
+dados_por_ano_fundamental.append(fundamental_2017)
+dados_por_ano_fundamental.append(fundamental_2018)
 
 
 #ln[11]:
 
 
-dados_por_ano_medio
+dados_por_ano_fundamental
 
 
 #ln[12]:
@@ -103,17 +103,17 @@ plt.title('Matriculados na rede municipal de SP - EJA')
 
 
 #Número de matriculados ensino MEDIO ao longo de 3 anos
-plt.bar(anos, dados_por_ano_medio, color= '#27A7FF', width=0.20)
-plt.ylabel('Matriculados ensino MEDIO')
+plt.bar(anos, dados_por_ano_fundamental, color= '#27A7FF', width=0.20)
+plt.ylabel('Matriculados ensino FUNDAMENTAL')
 plt.xlabel('Anos')
-plt.title('Matriculados na rede municipal de SP - Ensino MEDIO')
+plt.title('Matriculados na rede municipal de SP - Ensino FUNDAMENTAL')
 
 
 #ln[14]:
 
 
 #Matriculados por_ano EJA
-#Matriculados por_ano Ensino MEDIO
+#Matriculados por_ano Ensino FUNDAMENTAL
 
 #largura da barra
 barWidth = 0.25
@@ -124,13 +124,13 @@ b2 = [x + barWidth for x in b1]
 
 #criação de barras
 plt.bar(b1, dados_por_ano_eja, color='#ff7f27', width=barWidth, label='EJA')
-plt.bar(b2, dados_por_ano_medio, color='#27A7FF', width=barWidth, label='MEDIO')
+plt.bar(b2, dados_por_ano_fundamental, color='#27A7FF', width=barWidth, label='FUND')
 
 #legenda
 plt.xlabel('Anos')
 plt.xticks([b + barWidth for b in range(len(dados_por_ano_eja))], anos)
-plt.ylabel('Matriculados EJA e Medio')
-plt.title('Matriculados na rede municipal de SP - EJA e Ensino Medio')
+plt.ylabel('Matriculados EJA e Fundamental')
+plt.title('Matriculados na rede municipal de SP - EJA e Ensino Fundamental')
 
 plt.legend()
 
